@@ -34,4 +34,9 @@ public class CandidateController {
         candidateService.delete(candidateId);
         return ResponseEntity.noContent().build();
     }
+
+    @GetMapping("/viewCandidateList")
+    public ResponseEntity<List<CandidateResponse>> viewCandidateList() {
+        return ResponseEntity.ok(candidateService.viewCandidateList());
+    }
 }

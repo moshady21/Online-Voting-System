@@ -7,11 +7,14 @@ import org.springframework.data.repository.CrudRepository;
 import org.springframework.data.repository.query.Param;
 import org.springframework.stereotype.Repository;
 import java.util.List;
+import java.util.Optional;
 
 @Repository
 public interface CandidateRepository extends CrudRepository<Candidate, Long> {
 
     List<Candidate> findByElectionId(Long electionId);
+
+    Optional<Candidate> findByCandidateName(String candidateName);
 
     List<Candidate> findByCandidateNameContaining(String candidateName);
 

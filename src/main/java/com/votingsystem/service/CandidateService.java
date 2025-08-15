@@ -12,6 +12,7 @@ import com.votingsystem.repository.ElectionRepository;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
+import java.util.ArrayList;
 import java.util.List;
 import java.util.stream.Collectors;
 
@@ -63,5 +64,14 @@ public class CandidateService {
         dto.setRegisteredByAdminId(c.getRegisteredBy().getId());
         dto.setCreatedAt(c.getCreatedAt());
         return dto;
+    }
+
+    public List<CandidateResponse> viewCandidateList(){
+        Iterable<Candidate> candidates = candidateRepo.findAll();
+        List<CandidateResponse> candidatesList = new ArrayList<CandidateResponse>();
+        for(Candidate c : candidates){
+            candidatesList.add(toResponse(c));
+        }
+        return candidatesList;
     }
 }
