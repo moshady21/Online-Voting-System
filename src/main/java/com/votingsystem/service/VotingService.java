@@ -3,6 +3,7 @@ package com.votingsystem.service;
 import com.votingsystem.dto.vote.VoteRequestDTO;
 import com.votingsystem.dto.vote.VoteResponseDTO;
 import com.votingsystem.entity.*;
+import com.votingsystem.exception.VotingClosedException;
 import com.votingsystem.repository.*;
 import jakarta.transaction.Transactional;
 import org.springframework.stereotype.Service;
@@ -51,7 +52,7 @@ public class VotingService {
         // Ensure election is active
         LocalDateTime now = LocalDateTime.now();
         if (now.isBefore(election.getStartTime()) || now.isAfter(election.getEndTime())) {
-            throw new RuntimeException("Voting is not allowed outside the election time window");
+            throw new VotingClosedException("Voting is not allowed outside the election time window");
         }
 
         // Ensure election is active
@@ -74,6 +75,7 @@ public class VotingService {
         response.setCandidateName(candidate.getCandidateName());
         response.setElectionName(election.getTitle());
         response.setTimestamp(LocalDateTime.now());
+        response.setMessage("Successful");
 
         return response;
     }

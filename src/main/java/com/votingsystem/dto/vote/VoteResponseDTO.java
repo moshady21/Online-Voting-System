@@ -22,6 +22,7 @@ public class VoteResponseDTO {
         this.electionName = electionName;
         this.candidateName = candidateName;
         this.timestamp = timestamp;
+        this.message = "Successful";
     }
 
     public Long getVoteId() { return voteId; }
@@ -38,4 +39,12 @@ public class VoteResponseDTO {
 
     public LocalDateTime getTimestamp() { return timestamp; }
     public void setTimestamp(LocalDateTime timestamp) { this.timestamp = timestamp; }
+
+    public String getMessage() {
+        return message;
+    }
+
+    public void setMessage(String message) {
+        this.message = message;
+    }
 }

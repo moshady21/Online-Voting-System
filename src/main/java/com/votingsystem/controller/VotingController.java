@@ -25,7 +25,7 @@ public class VotingController {
             VoteResponseDTO response = votingService.castVote(request);
             return ResponseEntity.ok(response);
         }
-        catch (VotingClosedException e){
+        catch (RuntimeException e){
             return ResponseEntity
                     .status(HttpStatus.FORBIDDEN)
                     .body(new VoteResponseDTO(e.getMessage()));
