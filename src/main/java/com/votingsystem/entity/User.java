@@ -50,4 +50,9 @@ public abstract class User {
         this.name = name;
         this.role = role;
     }
+
+    // Method needed for CustomUserDetailsService - using email as username
+    public String getUsername() {
+        return this.email;
+    }
 }
